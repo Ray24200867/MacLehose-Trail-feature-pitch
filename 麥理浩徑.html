@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>麥理浩徑的突然走紅帶來了什麼？</title>
+  <style>
+    :root {
+      --bg: #edf3ee;
+      --mist: #dfe9df;
+      --sage: #9fb7a3;
+      --forest: #355848;
+      --deep: #243a31;
+      --moss: #5f7d67;
+      --text: #22322b;
+      --muted: #61756a;
+      --card: rgba(255,255,255,0.76);
+      --line: rgba(36,58,49,0.10);
+      --accent: #4c6b55;
+      --accent-2: #7fa085;
+      --shadow: 0 18px 50px rgba(36, 58, 49, 0.10);
+      --radius: 28px;
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #eff5f0 0%, #e6efe7 100%);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+
+    .hero {
+      min-height: auto;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 8%, rgba(255,255,255,0.36), transparent 18%),
+        linear-gradient(180deg, rgba(111,145,121,0.92), rgba(61,95,79,0.96));
+      color: #f7fbf7;
+      padding-bottom: 56px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), transparent 28%, rgba(20,34,28,0.08) 100%);
+      pointer-events: none;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(237, 243, 238, 0.74);
+      border-bottom: 1px solid rgba(36,58,49,0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 0;
+      gap: 20px;
+      flex-direction: column;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      font-size: 1rem;
+      color: var(--deep);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+      justify-content: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,0.30);
+      background: rgba(255,255,255,0.12);
+      color: #f7fbf7;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-grid {
+      display: block;
+      padding: 52px 0 0;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      line-height: 1;
+      margin: 18px 0 16px;
+      letter-spacing: -0.04em;
+      text-align: center;
+    }
+
+    .hero-copy p {
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      color: rgba(247,251,247,0.92);
+      font-size: 1.02rem;
+      text-align: center;
+    }
+
+    .hero-image-placeholder {
+      margin: 28px auto 26px;
+      width: 100%;
+      max-width: 860px;
+      min-height: 360px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+      box-shadow: 0 18px 48px rgba(18,36,29,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-image-placeholder span {
+      color: rgba(247,251,247,0.86);
+      font-size: 1rem;
+    }
+
+    .hero-copy .lede {
+      margin: 0 auto;
+      padding: 26px 28px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 26px;
+      box-shadow: 0 10px 32px rgba(0,0,0,0.06);
+      max-width: 820px;
+      text-align: center;
+    }
+
+    .hero-copy .lede p { margin: 0 0 12px; }
+    .hero-copy .lede p:last-child { margin-bottom: 0; }
+
+    .hero-side { display: none; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.58);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      color: var(--text);
+    }
+
+    .stats-strip {
+      max-width: 860px;
+      margin: 24px auto 0;
+      padding: 16px;
+      background: rgba(36,58,49,0.14);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 24px;
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 0;
+    }
+
+    .kpi {
+      background: rgba(255,255,255,0.14);
+      border-radius: 18px;
+      padding: 16px;
+      text-align: center;
+      color: #f7fbf7;
+    }
+
+    .kpi strong {
+      display: block;
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      display: block;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .section-head h2 {
+      margin: 12px 0 10px;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      text-align: center;
+    }
+
+    .section-head p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .overview-grid,
+    .impact-grid,
+    .pressure-grid,
+    .future-grid {
+      display: block;
+    }
+
+    .overview-grid > *,
+    .impact-grid > *,
+    .pressure-grid > *,
+    .future-grid > * {
+      margin-bottom: 24px;
+    }
+
+    .panel {
+      padding: 26px;
+    }
+
+    .panel h3 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+      text-align: left;
+    }
+
+    .muted { color: var(--muted); }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(255,255,255,0.46);
+      min-width: 620px;
+    }
+
+    th, td {
+      padding: 15px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      font-size: 0.92rem;
+      color: var(--muted);
+      background: rgba(255,255,255,0.35);
+      font-weight: 700;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .note {
+      margin-top: 14px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .mini-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .mini {
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.52);
+      border: 1px solid var(--line);
+      text-align: left;
+    }
+
+    .mini strong {
+      display: block;
+      font-size: 2rem;
+      line-height: 1;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+
+    .chart-box {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.45);
+      border: 1px solid var(--line);
+    }
+
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 130px 1fr 62px;
+      gap: 12px;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .bar-track {
+      height: 14px;
+      background: rgba(36,58,49,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--forest), var(--accent-2));
+    }
+
+    .placeholder {
+      margin-top: 18px;
+      padding: 18px;
+      border: 1.5px dashed rgba(76,107,85,0.35);
+      border-radius: 20px;
+      background: rgba(255,255,255,0.24);
+    }
+
+    .placeholder h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .bullets {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .story-block {
+      padding: 28px;
+      background: rgba(255,255,255,0.38);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+    }
+
+    footer {
+      padding: 36px 0 60px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    @media (max-width: 720px) {
+      .container { width: min(var(--max), calc(100% - 20px)); }
+      .nav-links { gap: 12px; font-size: 0.9rem; }
+      .kpis { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 100px 1fr 48px; }
+      .hero-image-placeholder { min-height: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#top">MACLEHOSE FEATURE</a>
+      <div class="nav-links">
+        <a href="#overview">概覽</a>
+        <a href="#virality">走紅原因</a>
+        <a href="#benefits">帶來好處</a>
+        <a href="#pressures">帶來壓力</a>
+        <a href="#future">未來規劃</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="pill">Data Feature Pitch ／ 香港遠足與旅遊</div>
+        <h1>麥理浩徑的突然走紅<br />帶來了什麼？</h1>
+
+        <div class="hero-image-placeholder">
+          <img src="截屏2026-03-10 18.02.24.png" alt="破邊洲或東壩航拍圖" style="width:100%;height:auto;border-radius:30px;" />
+        </div>
+        <div class="lede">
+          <p>2026年元旦假期，西貢前往萬宜水庫東壩的小巴站外出現長長人龍。有小巴司機透露，當天前往麥理浩徑的遊客超過4,000人，創下紀錄，翌日亦有超過3,000人到訪。</p>
+          <p>該名司機表示，自己當日來回行駛9趟，直至凌晨12時30分才收工，大部分班次均滿載，客流高峰出現在下午3時30分至6時30分。</p>
+          <p>麥理浩徑近年迅速走紅。一項調查顯示，在「最具潛力成為國際旅遊景點的香港山徑」中，50.7%受訪者首選麥理浩徑，遠高於鳳凰徑（21.7%）及港島徑（15%）。</p>
+          <p>隨著社交媒體與旅遊推廣帶動，香港郊野公園每年約吸引1100萬人次訪客，遠足已成為最受歡迎的戶外活動之一。但這條山徑的突然爆紅，也為交通、環境與山徑管理帶來新的挑戰。</p>
+        </div>
+        <div class="stats-strip">
+          <div class="kpis">
+            <div class="kpi">
+              <strong>4,000+</strong>
+              <span>元旦單日到訪人數</span>
+            </div>
+            <div class="kpi">
+              <strong>50.7%</strong>
+              <span>旅遊潛力首選麥理浩徑</span>
+            </div>
+            <div class="kpi">
+              <strong>44宗</strong>
+              <span>2025 郊野公園亂拋垃圾執法</span>
+            </div>
+          </div>
+        </div>
+      </div>
+          <h3>一條山徑爆紅之後，城市得到什麼，又失去什麼？</h3>
+          <p>這個專題把故事拆成五個部分：路線概覽、社交媒體推動、經濟與旅遊好處、環境與安全壓力，以及未來的可持續規劃。</p>
+        </div>
+
+        <div class="stats-bar">
+          <h4>目前已可直接上版的核心數字</h4>
+          <div class="kpis">
+            <div class="kpi">
+              <strong>4,000+</strong>
+              <span>元旦單日到訪人數</span>
+            </div>
+            <div class="kpi">
+              <strong>50.7%</strong>
+              <span>旅遊潛力首選麥理浩徑</span>
+            </div>
+            <div class="kpi">
+              <strong>44宗</strong>
+              <span>2025 郊野公園亂拋垃圾執法</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="overview">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="pill" style="color:var(--deep);border-color:rgba(74,43,26,0.14);background:rgba(255,255,255,0.42);">Part 1</div>
+            <h2>麥理浩徑如何成為香港最受關注的遠足路線</h2>
+          </div>
+          <p>先交代路線基本結構，再用調查與軌跡數據說明它如何在公眾認知與實際使用上都成為香港最受矚目的山徑。</p>
+        </div>
+
+        <div class="overview-grid">
+          <div class="card panel">
+            <h3>圖表 1｜麥理浩徑 10 段路線可視化</h3>
+            <p class="muted">用橫向路線圖代替表格，讓讀者一眼看到 10 段的距離、景觀評分，以及第二段在整條山徑中的突出位置。</p>
+
+            <div class="chart-box" style="padding:22px;">
+              <div style="display:flex;gap:20px;flex-wrap:wrap;">
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;">
+                    <div class="muted">北潭涌起步</div>
+                    <div class="muted">全長約 100 km ／ 共 10 段</div>
+                    <div class="muted">屯門終點</div>
+                  </div>
+
+                  <div style="display:grid;gap:14px;">
+                    <div class="bar-row" style="grid-template-columns: 210px 1fr 80px;">
+                      <span>第一段・北潭涌－浪茄</span>
+                      <div class="bar-track" style="height:18px;"><div class="bar-fill" style="width:71%;"></div></div>
+                      <strong>11 km</strong>
+                    </div>
+                <div style="margin-top:-8px;margin-left:210px;color:var(--muted);font-size:0.92rem;">需時 3.5 hr ／ 景觀 3.5</div>
+
+                <div class="bar-row" style="grid-template-columns: 210px 1fr 80px;">
+                  <span><strong>第二段・浪茄－北潭凹</strong></span>
+                  <div class="bar-track" style="height:20px;background:rgba(212,133,66,0.15);position:relative;overflow:visible;">
+                    <div class="bar-fill" style="width:90%;background:linear-gradient(90deg, #9c4e23, #e09a56);"></div>
+                    <div style="position:absolute;right:-8px;top:50%;transform:translateY(-50%);width:16px;height:16px;border-radius:50%;background:#9c4e23;box-shadow:0 0 0 5px rgba(156,78,35,0.18);"></div>
+                  </div>
+                  <strong style="color:#9c4e23;">14 km</strong>
+                </div>
+                <div style="margin-top:-8px;margin-left:210px;color:#9c4e23;font-size:0.92rem;"><strong>熱門段</strong>：破邊洲、東壩、西貢海岸 ／ 需時 4.5 hr ／ 景觀 4</div>
+
+                <div class="bar-row" style="grid-template-columns: 210px 1fr 80px;">
+                  <span>第三段・北潭凹－水浪窩</span>
+                  <div class="bar-track" style="height:18px;"><div class="bar-fill" style="width:58%;"></div></div>
+                  <strong>9 km</strong>
+                </div>
+                <div style="margin-top:-8px;margin-left:210px;color:var(--muted);font-size:0.92rem;">需時 3.5 hr ／ 景觀 4</div>
+
+                <div class="bar-row" style="grid-template-columns: 210px 1fr 80px;">
+                  <span>第四段・水浪窩－大老山</span>
+                  <div class="bar-track" style="height:18px;"><div class="bar-fill" style="width:87%;"></div></div>
+                  <strong>13.5 km</strong>
+                </div>
+                <div style="margin-top:-8px;margin-left:210px;color:var(--muted);font-size:0.92rem;">需時 5 hr ／ 景觀 4</div>
+
+                <div class="bar-row" style="grid-template-columns: 210px 1fr 80px;">
+                  <span>第五段・大老山－大埔公路</span>
+                  <div class="bar-track" style="height:18px;"><div class="bar-fill" style="width:71%;"></div></div>
+                  <strong>11 km</strong>
+                </div>
+                <div style="margin-top:-8px;margin-left:210px;color:var(--muted);font-size:0.92rem;">需時 3.5 hr ／ 景觀 2.5</div>
+
+                <div class="bar-row" style="grid-template-columns: 210px 1fr 80px;">
+                  <span>第六段・大埔公路－城門水塘</span>
+                  <div class="bar-track" style="height:18px;"><div class="bar-fill" style="width:26%;"></div></div>
+                  <strong>4 km</strong>
+                </div>
+                <div style="margin-top:-8px;margin-left:210px;color:var(--muted);font-size:0.92rem;">需時 1.5 hr ／ 景觀 2.5</div>
+
+                <div class="bar-row" style="grid-template-columns: 210px 1fr 80px;">
+                  <span>第七段・城門水塘－鉛礦坳</span>
+                  <div class="bar-track" style="height:18px;"><div class="bar-fill" style="width:45%;"></div></div>
+                  <strong>7 km</strong>
+                </div>
+                <div style="margin-top:-8px;margin-left:210px;color:var(--muted);font-size:0.92rem;">需時 3.5 hr ／ 景觀 3.5</div>
+
+                <div class="bar-row" style="grid-template-columns: 210px 1fr 80px;">
+                  <span>第八段・鉛礦坳－荃錦公路</span>
+                  <div class="bar-track" style="height:18px;"><div class="bar-fill" style="width:61%;"></div></div>
+                  <strong>9.5 km</strong>
+                </div>
+                <div style="margin-top:-8px;margin-left:210px;color:var(--muted);font-size:0.92rem;">需時 3.5 hr ／ 景觀 3.5</div>
+
+                <div class="bar-row" style="grid-template-columns: 210px 1fr 80px;">
+                  <span>第九段・荃錦公路－田夫仔</span>
+                  <div class="bar-track" style="height:18px;"><div class="bar-fill" style="width:39%;"></div></div>
+                  <strong>6 km</strong>
+                </div>
+                <div style="margin-top:-8px;margin-left:210px;color:var(--muted);font-size:0.92rem;">需時 1.5 hr ／ 景觀 1</div>
+
+                <div class="bar-row" style="grid-template-columns: 210px 1fr 80px;">
+                  <span>第十段・田夫仔－屯門</span>
+                  <div class="bar-track" style="height:18px;position:relative;overflow:visible;"><div class="bar-fill" style="width:100%;"></div><div style="position:absolute;right:-8px;top:50%;transform:translateY(-50%);width:14px;height:14px;border-radius:50%;background:var(--deep);"></div></div>
+                  <strong>15.5 km</strong>
+                </div>
+                <div style="margin-top:-8px;margin-left:210px;color:var(--muted);font-size:0.92rem;">終點段 ／ 需時 5 hr ／ 景觀 2</div>
+              </div>
+            </div>
+            <div style="flex:0 0 300px;">
+              <img src="截屏2026-03-10 18.08.18.png" alt="麥理浩徑圖示" style="width:100%;height:auto;border-radius:20px;" />
+            </div>
+          </div>
+            <p class="note">配文建議：麥理浩徑全長約 100 公里，分為 10 段。當中位於西貢的第一、二段最常出現在旅遊推介與社交媒體內容之中；第二段連接浪茄與北潭凹，沿途經過破邊洲、東壩與西貢海岸，是整條路線中辨識度最高、也最受遊客歡迎的一段，因此在圖中以不同顏色及節點突出顯示。</p>
+          </div>
+
+          <div class="card panel">
+            <h3>圖表 2｜最具國際旅遊潛力的香港山徑</h3>
+            <div class="chart-box">
+              <div class="bar-chart">
+                <div class="bar-row"><span>麥理浩徑</span><div class="bar-track"><div class="bar-fill" style="width:50.7%"></div></div><strong>50.7%</strong></div>
+                <div class="bar-row"><span>鳳凰徑</span><div class="bar-track"><div class="bar-fill" style="width:21.7%"></div></div><strong>21.7%</strong></div>
+                <div class="bar-row"><span>港島徑</span><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div><strong>15%</strong></div>
+              </div>
+            </div>
+            <p class="note">配文：調查結果顯示，麥理浩徑在公眾認知中遠遠領先其他山徑，已被視為香港最有機會發展成國際旅遊景點的遠足路線。</p>
+
+            <div class="placeholder">
+              <h4>圖表 3｜兩步路 App 上與麥理浩徑相關的 GPS 軌跡紀錄數量</h4>
+              <p class="muted">這裡先留空，之後可加入按年份或按路段統計的軌跡數量。</p>
+              <ul class="bullets">
+                <li>建議放什麼：2019–2026 每年紀錄數量，或第 1–10 段的軌跡分佈。</li>
+                <li>用途：用實際使用數據補強「麥理浩徑不只是被談論，也真的被大量行走」。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="virality">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="pill" style="color:var(--deep);border-color:rgba(74,43,26,0.14);background:rgba(255,255,255,0.42);">Part 2</div>
+            <h2>社交媒體如何推動山徑走紅</h2>
+          </div>
+          <p>這一部分說明「突然走紅」並不是抽象感覺，而是由可視化景觀、短影片、打卡帖文與旅遊推廣共同製造的注意力高峰。</p>
+        </div>
+
+        <div class="card panel story-block">
+          <div class="mini-cards">
+            <div class="mini">
+              <strong>64.8%</strong>
+              <span>認為紀錄片或宣傳影片是最有效推廣方式</span>
+            </div>
+            <div class="mini">
+              <strong>第二段</strong>
+              <span>在這裡加破邊洲相關照片、地圖或社交媒體截圖，形成視覺焦點</span>
+            </div>
+          </div>
+
+          <div class="placeholder">
+            <h4>圖表 4｜小紅書／抖音每年提及「麥理浩徑」的帖子數量</h4>
+            <p class="muted">目前先空出，未來可以放柱狀圖或折線圖。</p>
+            <ul class="bullets">
+              <li>2019、2021、2023、2025、2026 各年關於麥理浩徑的貼文數以及搜索次數。</li>
+                <li>如果能找到路段數據，可以比較第一、二段與其他段的提及量，說明第二段是爆紅的主要來源。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="pill" style="color:var(--deep);border-color:rgba(74,43,26,0.14);background:rgba(255,255,255,0.42);">Part 3</div>
+            <h2>爆紅帶來的好處</h2>
+          </div>
+          <p>把好處拆成旅遊潛力、地方經濟與戶外文化三個面向。</p>
+        </div>
+
+        <div class="impact-grid">
+          <div class="card panel">
+            <h3>旅遊與城市品牌</h3>
+            <p>你已經有兩個可以支撐這一段的數字：一是 50.7% 受訪者認為麥理浩徑最具國際旅遊潛力；二是香港郊野公園每年約有 <strong>1,100 萬人次</strong> 訪客。這裡可以寫成：在城市旅遊從購物轉向戶外體驗的背景下，麥理浩徑正在成為香港自然旅遊的代表性名片。</p>
+            <div class="mini-cards">
+              <div class="mini">
+                <strong>1,100萬</strong>
+                <span>香港郊野公園每年約訪客人次</span>
+              </div>
+              <div class="mini">
+                <strong>50.7%</strong>
+                <span>認為最具國際旅遊潛力</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card panel">
+            <h3>地方經濟與戶外消費</h3>
+            <p class="muted">這裡可以放西貢餐飲、交通與戶外用品店的受惠情況。目前暫時以框架佔位，等你補到採訪或營業數字後直接填入。</p>
+            <div class="placeholder">
+              <h4>待補表格｜爆紅帶動的經濟收益</h4>
+              <ul class="bullets">
+                <li>西貢小巴／的士客量變化</li>
+                <li>西貢餐廳、士多、咖啡店營業額或訪談</li>
+                <li>戶外用品店銷售變化</li>
+                <li>露營或導賞活動的訂單數量</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pressures">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="pill" style="color:var(--deep);border-color:rgba(74,43,26,0.14);background:rgba(255,255,255,0.42);">Part 4</div>
+            <h2>爆紅帶來的壓力</h2>
+          </div>
+          <p>這裡是整篇專題的衝突核心：人流高峰、垃圾問題、露營超載、行山事故，以及配套設施跟不上。</p>
+        </div>
+
+        <div class="pressure-grid">
+          <div class="card panel">
+            <h3>人潮與交通壓力</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>指標</th>
+                    <th>數值</th>
+                    <th>可寫角度</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>元旦單日到訪</td><td>4,000+</td><td>創紀錄，作為爆紅最直觀證據</td></tr>
+                  <tr><td>翌日到訪</td><td>3,000+</td><td>顯示高峰不是單一時刻</td></tr>
+                  <tr><td>司機來回班次</td><td>9 趟</td><td>交通系統長時間滿載</td></tr>
+                  <tr><td>收工時間</td><td>00:30</td><td>客流延續至深夜</td></tr>
+                  <tr><td>高峰時段</td><td>15:30–18:30</td><td>可與排隊畫面結合</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="placeholder" style="margin-top:18px;">
+              <h4>採訪計畫：交通部份</h4>
+              <p class="muted">可到現場採訪小巴司機，詢問</p>
+              <ul class="bullets">
+                <li>每天往返西貢的小巴數量變化</li>
+                <li>是否觀察到旅遊高峰期的調度調整</li>
+              </ul>
+              <p class="muted">同時聯絡城巴公司，蒐集他們派往西貢線路的車輛與班次資料，了解人潮壓力對整體公共交通的影響。</p>
+            </div>
+          </div>
+
+          <div class="card panel">
+            <h3>環境壓力：亂拋垃圾執法個案上升</h3>
+            <div class="chart-box">
+              <div class="bar-chart">
+                <div class="bar-row"><span>2024 全港</span><div class="bar-track"><div class="bar-fill" style="width:22.7%"></div></div><strong>10</strong></div>
+                <div class="bar-row"><span>2025 全港</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><strong>44</strong></div>
+                <div class="bar-row"><span>2024 西貢東／西</span><div class="bar-track"><div class="bar-fill" style="width:18.1%"></div></div><strong>4</strong></div>
+                <div class="bar-row"><span>2025 西貢東／西</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><strong>22</strong></div>
+              </div>
+            </div>
+            <p class="note">配文：2025年全港郊野公園涉及亂拋垃圾的執法個案共 44 宗，較前一年的 10 宗大增 3.4 倍；當中位於西貢東及西貢西郊野公園的個案，更由 4 宗增至 22 宗，升幅達 4.5 倍。麥理浩徑第一、二段及鹹田灣、浪茄灣、西灣營地均位於相關範圍內。</p>
+          </div>
+        </div>
+
+        <div class="pressure-grid" style="margin-top:24px;">
+          <div class="card panel">
+            <h3>待補圖表｜露營場地帳篷數目遠超可容納上限</h3>
+            <div class="placeholder">
+              <ul class="bullets">
+                <li>建議放什麼：鹹田灣、浪茄灣、西灣等營地在旺季的帳篷數與官方容納量對比。</li>
+                <li>用途：顯示「壓力」不只是路徑上的人潮，也延伸到露營區。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card panel">
+            <h3>待補圖表｜行山事故類型與數量</h3>
+            <div class="placeholder">
+              <ul class="bullets">
+                <li>建議放什麼：扭傷、迷路、中暑、山難救援等分類。</li>
+                <li>也可補充：第一、二段或西貢東壩一帶是否特別集中。</li>
+                <li>用途：把「爆紅」與安全成本連接起來。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card panel" style="margin-top:24px;">
+          <h3>待補段落｜山徑配套設施跟不上</h3>
+          <p class="muted">你提到有不少遊客認為補水站不足，這一段可以做成「問題列表 + 訪談」。</p>
+          <div class="placeholder">
+            <h4>建議放什麼</h4>
+            <ul class="bullets">
+              <li>遊客問卷：補水站、洗手間、指示牌、網絡覆蓋、交通接駁。</li>
+              <li>官方回應：未來是否增設水站或改善東壩交通。</li>
+              <li>視覺呈現：用圖示列出最常被提及的三大不足。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="future">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="pill" style="color:var(--deep);border-color:rgba(74,43,26,0.14);background:rgba(255,255,255,0.42);">Part 5</div>
+            <h2>網紅山徑的未來規劃與提升</h2>
+          </div>
+          <p>最後一部分把前面的好處與壓力收束到政策層面：如何在旅遊發展與環境承載之間找到平衡。</p>
+        </div>
+
+        <div class="future-grid">
+          <div class="card panel">
+            <h3>可持續旅遊的方向</h3>
+            <ul class="bullets">
+              <li>改善東壩與北潭凹一帶的交通承載能力</li>
+              <li>加強露營區管理與垃圾執法</li>
+              <li>把遊客教育納入宣傳影片或官方資訊頁面</li>
+              <li>以熱門路段分流方式減輕第一、二段壓力</li>
+            </ul>
+          </div>
+
+          <div class="card panel">
+            <h3>待補內容｜政府與公眾提出的具體方案</h3>
+            <div class="placeholder">
+              <ul class="bullets">
+                <li>政府文件、立法會討論、旅遊業界建議</li>
+                <li>環保團體對西貢東、西貢西郊野公園的保育意見</li>
+                <li>旅遊與山徑管理如何避免「越紅越受損」</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>這是一個可繼續補完的 HTML 專題頁草稿。已放入你現有的文字與數據；空白位置已標明之後應補的資料類型與用途。</p>
+    </div>
+  </footer>
+</body>
+</html>
